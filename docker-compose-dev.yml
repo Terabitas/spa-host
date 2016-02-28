@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  apihostd:
+      image: golang:1.5.1-wheezy
+      ports:
+          - "80:1080"
+      command: .scripts/docker/run.sh
+      working_dir: /go/src/github.com/nildev/spa-host
+      volumes:
+          - ./:/go/src/github.com/nildev/spa-host
+
+      environment:
+          - API_HOSTD_PORT=1080
+          - API_HOSTD_VERBOSITY=2

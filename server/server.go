@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/nildev/spa-host/config"
 	"github.com/nildev/spa-host/version"
+	"os"
 )
 
 // Server type
@@ -32,6 +33,8 @@ func New(cfg config.Config) (*Server, error) {
 // Run server
 func (s *Server) Run() {
 	ctxLog := log.WithField("version", version.Version).WithField("git-hash", version.GitHash).WithField("build-time", version.BuiltTimestamp)
+	f, e := os.Stat(s.cfg.DocRoot)
+	ctxLog.Infof("%+v [%s]", f, e)
 
 	ctxLog.Infof("Starting spa-host service [%s:%s]", s.cfg.IP, s.cfg.Port)
 	s.stop = make(chan bool)
