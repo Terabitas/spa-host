@@ -11,6 +11,10 @@
 			"Rev": "51fe59aca108dc5680109e7b2051cbdcfa5a253c"
 		},
 		{
+			"ImportPath": "github.com/getsentry/raven-go",
+			"Rev": "1cc47a9463b90f246a0503d4c2e9a55c9459ced3"
+		},
+		{
 			"ImportPath": "github.com/gorilla/context",
 			"Rev": "215affda49addc4c8ef7e2534915df2c8c35c6cd"
 		},
@@ -25,6 +29,10 @@
 		{
 			"ImportPath": "github.com/rakyll/goini",
 			"Rev": "907cca0f578a5316fb864ec6992dc3d9730ec58c"
+		},
+		{
+			"ImportPath": "github.com/tobi/airbrake-go",
+			"Rev": "a3cdd910a3ffef88a20fbecc10363a520ad61a0a"
 		}
 	]
 }

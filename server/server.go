@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	log "github.com/Sirupsen/logrus"
+	"github.com/gorilla/mux"
 	"github.com/nildev/spa-host/config"
 	"github.com/nildev/spa-host/version"
-	"github.com/gorilla/mux"
 )
 
 // Server type

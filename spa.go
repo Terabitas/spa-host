@@ -2,19 +2,17 @@ package main
 
 import (
 	"flag"
-	"net/http"
-    "github.com/gorilla/mux"
 	"github.com/nildev/spa-host/version"
 
-	log "github.com/Sirupsen/logrus"
-	"os"
+	"encoding/json"
 	"fmt"
-"github.com/rakyll/globalconf"
-"github.com/nildev/spa-host/config"
-"github.com/nildev/spa-host/server"
-"encoding/json"
+	log "github.com/Sirupsen/logrus"
+	"github.com/nildev/spa-host/config"
+	"github.com/nildev/spa-host/server"
+	"github.com/rakyll/globalconf"
+	"os"
+	"os/signal"
 	"syscall"
-"os/signal"
 )
 
 const (
@@ -37,7 +35,6 @@ func init() {
 	log.SetOutput(os.Stdout)
 	log.SetLevel(log.WarnLevel)
 }
-
 
 func main() {
 	ctxLog = log.WithField("version", version.Version).WithField("git-hash", version.GitHash).WithField("build-time", version.BuiltTimestamp)
@@ -72,6 +69,7 @@ func main() {
 	cfgset.Int("verbosity", 0, "Logging level")
 	cfgset.String("ip", "", "Server IP to bind")
 	cfgset.String("port", "", "Port to listen on")
+	cfgset.String("doc_root", "", "Port to listen on")
 
 	globalconf.Register("", cfgset)
 	cfg, err := getConfig(cfgset, *cfgPath)
@@ -138,7 +136,6 @@ func main() {
 	listenForSignals(signals)
 }
 
-
 func getConfig(flagset *flag.FlagSet, userCfgFile string) (*config.Config, error) {
 	opts := globalconf.Options{EnvPrefix: "SPA_HOSTD_"}
 
@@ -176,7 +173,6 @@ func getConfig(flagset *flag.FlagSet, userCfgFile string) (*config.Config, error
 
 	return &cfg, nil
 }
-
 
 func listenForSignals(sigmap map[os.Signal]func()) {
 	sigchan := make(chan os.Signal, 1)
