@@ -1,6 +1,6 @@
 # spa-host
 
-This is server for SPA.
+This is server for SPA. Serving from directory configured at `doc_root`.
 
 Use [api-builder](https://github.com/nildev/api-builder) to compile final server and produce docker container.
 
